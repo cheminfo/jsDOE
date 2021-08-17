@@ -1,0 +1,44 @@
+{
+  "name": "jsDOE",
+  "version": "0.0.0",
+  "description": "Design of experiments for JavaScript",
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "eslint": "eslint src",
+    "eslint-fix": "npm run eslint -- --fix",
+    "prepack": "rollup -c",
+    "prettier": "prettier --check src",
+    "prettier-write": "prettier --write src",
+    "test": "npm run test-coverage && npm run eslint && npm run prettier",
+    "test-coverage": "jest --coverage",
+    "test-only": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheminfo/jsDOE.git"
+  },
+  "keywords": [],
+  "author": "Benjamin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cheminfo/jsDOE/issues"
+  },
+  "homepage": "https://github.com/cheminfo/jsDOE#readme",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.14.5",
+    "@types/jest": "^26.0.24",
+    "eslint": "^7.32.0",
+    "eslint-config-cheminfo": "^5.2.4",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
+    "rollup": "^2.55.1"
+  }
+}
