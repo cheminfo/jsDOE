@@ -23,3 +23,69 @@ export function ff2n(n) {
     },
   );
 }
+
+export function fractionalFactorial(gen) {
+  const index = {};
+  let count = 0;
+  let singleCount = 0;
+  let word = '';
+  const single = [];
+  const multiple = [];
+  //Map each element in the input expression
+  for (let i = 0; i <= gen.length; i++) {
+    if (i === gen.length || gen[i] === ' ') {
+      if (word) {
+        index[word] = count++;
+        if (word.length <= 1) {
+          if (word >= 'A') {
+            singleCount++;
+            single.push(word);
+          }
+        } else {
+          multiple.push(word);
+        }
+        word = '';
+      }
+    } else {
+      word += gen[i];
+    }
+  }
+  if (word) {
+    index[word] = count++;
+    word = '';
+  }
+  const singleMatrix = ff2n(singleCount);
+  const lines = singleMatrix.length;
+  const finalMatrix = utils.applyToMatrix(
+    utils.build2dMatrix(lines, count),
+    () => {
+      return 1;
+    },
+  );
+  //final matrix filling - single values
+  for (let i = 0; i < singleCount; i++) {
+    const currentIndex = index[single[i]];
+    for (let j = 0; j < lines; j++) {
+      finalMatrix[j][currentIndex] = singleMatrix[j][i];
+    }
+  }
+  //final matrix filling - product values
+  for (let i = 0; i < multiple.length; i++) {
+    const str = multiple[i];
+    const currentIndex = index[str];
+    for (let k = 0; k < str.length; k++) {
+      const char = str[k];
+      if (char === '-') {
+        for (let j = 0; j < lines; j++) {
+          finalMatrix[j][currentIndex] *= -1;
+        }
+      } else {
+        const multIndex = index[char];
+        for (let j = 0; j < lines; j++) {
+          finalMatrix[j][currentIndex] *= finalMatrix[j][multIndex];
+        }
+      }
+    }
+  }
+  return finalMatrix;
+}

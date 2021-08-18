@@ -65,3 +65,14 @@ describe('ff2n', () => {
     ]);
   });
 });
+
+describe('fractionalFactorial', () => {
+  it('should return a something', () => {
+    expect(factorial.fractionalFactorial('a b ab')).toStrictEqual([
+      new Float64Array([-1.0, -1.0, 1.0]),
+      new Float64Array([1.0, -1.0, -1.0]),
+      new Float64Array([-1.0, 1.0, -1.0]),
+      new Float64Array([1.0, 1.0, 1.0]),
+    ]);
+  });
+});
