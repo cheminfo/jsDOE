@@ -74,5 +74,21 @@ describe('fractionalFactorial', () => {
       new Float64Array([-1.0, 1.0, -1.0]),
       new Float64Array([1.0, 1.0, 1.0]),
     ]);
+    expect(factorial.fractionalFactorial('A B AB')).toStrictEqual([
+      new Float64Array([-1.0, -1.0, 1.0]),
+      new Float64Array([1.0, -1.0, -1.0]),
+      new Float64Array([-1.0, 1.0, -1.0]),
+      new Float64Array([1.0, 1.0, 1.0]),
+    ]);
+    expect(factorial.fractionalFactorial('a b -ab c +abc')).toStrictEqual([
+      new Float64Array([-1.0, -1.0, -1.0, -1.0, -1.0]),
+      new Float64Array([1.0, -1.0, 1.0, -1.0, 1.0]),
+      new Float64Array([-1.0, 1.0, 1.0, -1.0, 1.0]),
+      new Float64Array([1.0, 1.0, -1.0, -1.0, -1.0]),
+      new Float64Array([-1.0, -1.0, -1.0, 1.0, 1.0]),
+      new Float64Array([1.0, -1.0, 1.0, 1.0, -1.0]),
+      new Float64Array([-1.0, 1.0, 1.0, 1.0, -1.0]),
+      new Float64Array([1.0, 1.0, -1.0, 1.0, 1.0]),
+    ]);
   });
 });

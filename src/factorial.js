@@ -50,10 +50,6 @@ export function fractionalFactorial(gen) {
       word += gen[i];
     }
   }
-  if (word) {
-    index[word] = count++;
-    word = '';
-  }
   const singleMatrix = ff2n(singleCount);
   const lines = singleMatrix.length;
   const finalMatrix = utils.applyToMatrix(
@@ -81,8 +77,10 @@ export function fractionalFactorial(gen) {
         }
       } else {
         const multIndex = index[char];
-        for (let j = 0; j < lines; j++) {
-          finalMatrix[j][currentIndex] *= finalMatrix[j][multIndex];
+        if (multIndex !== undefined) {
+          for (let j = 0; j < lines; j++) {
+            finalMatrix[j][currentIndex] *= finalMatrix[j][multIndex];
+          }
         }
       }
     }
