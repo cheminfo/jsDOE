@@ -24,6 +24,11 @@ export function applyToMatrix(matrix, lambda) {
   return matrix;
 }
 
+export function union(matrix1, matrix2) {
+  for (let i = 0; i < matrix1.length; i++) matrix1.append(matrix2[i]);
+  return matrix1;
+}
+
 // export function buildMultiplicativeArray(array){
 //     const cumulArray = new Float64Array(array.length);
 //     cumulArray[0] = 1;
