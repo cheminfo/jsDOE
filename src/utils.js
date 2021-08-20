@@ -53,11 +53,6 @@ export function union(matrix1, matrix2) {
   return matrix1;
 }
 
-// export function buildMultiplicativeArray(array){
-//     const cumulArray = new Float64Array(array.length);
-//     cumulArray[0] = 1;
-//     for (let i = 1; i<array.length; i++){
-//         cumulArray[i] = cumulArray[i-1] * array[i-1]
-//     }
-//     return cumulArray;
-// }
+export function isPowerOf2(n) {
+  return n && !(n & (n - 1));
+}

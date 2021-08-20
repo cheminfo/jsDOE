@@ -2,7 +2,7 @@ const utils = require('./utils');
 
 export function fullFactorial(levels) {
   const factors = levels.length;
-  const lines = utils.arrayProduct(levels);
+  const lines = utils.arrayTotalProduct(levels);
   const matrix = utils.build2dMatrix(lines, factors);
   for (let i = 0; i < lines; i++) {
     let last = 1;
