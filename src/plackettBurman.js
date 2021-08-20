@@ -46,10 +46,18 @@ export function hadamard(factors) {
 }
 
 export function pbDesign(factors) {
-  let factorsCopy = factors + 1;
+  let factorsCopy = factors << 1;
   let powerOfTwo = -1;
-  for (; powerOfTwo < 308 && factorsCopy !== 0; powerOfTwo++) {
+  for (; factorsCopy !== 0 && powerOfTwo < 35; powerOfTwo++) {
     factorsCopy >>= 1;
   }
-  return factors;
+  const lines = 1 << powerOfTwo;
+  const hdMatrix = hadamard(lines);
+  const matrix = utils.build2dMatrix(lines, factors);
+  for (let i = 0; i < lines; i++) {
+    for (let j = 0; j < factors; j++) {
+      matrix[i][j] = hdMatrix[lines - i - 1][j + 1];
+    }
+  }
+  return matrix;
 }

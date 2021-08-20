@@ -28,3 +28,23 @@ describe('hadamard', () => {
     ]);
   });
 });
+describe('pbDesign', () => {
+  it('should create a plackett-burnam design', () => {
+    expect(pb.pbDesign(3)).toStrictEqual([
+      new Float64Array([-1, -1, 1]),
+      new Float64Array([1, -1, -1]),
+      new Float64Array([-1, 1, -1]),
+      new Float64Array([1, 1, 1]),
+    ]);
+    expect(pb.pbDesign(5)).toStrictEqual([
+      new Float64Array([-1, -1, 1, -1, 1]),
+      new Float64Array([1, -1, -1, -1, -1]),
+      new Float64Array([-1, 1, -1, -1, 1]),
+      new Float64Array([1, 1, 1, -1, -1]),
+      new Float64Array([-1, -1, 1, 1, -1]),
+      new Float64Array([1, -1, -1, 1, 1]),
+      new Float64Array([-1, 1, -1, 1, -1]),
+      new Float64Array([1, 1, 1, 1, 1]),
+    ]);
+  });
+});
