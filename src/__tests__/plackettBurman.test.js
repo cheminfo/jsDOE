@@ -26,6 +26,16 @@ describe('hadamard', () => {
       new Float64Array([1, 1, -1, -1]),
       new Float64Array([1, -1, -1, 1]),
     ]);
+    expect(pb.hadamard(8)).toStrictEqual([
+      new Float64Array([1, 1, 1, 1, 1, 1, 1, 1]),
+      new Float64Array([1, -1, 1, -1, 1, -1, 1, -1]),
+      new Float64Array([1, 1, -1, -1, 1, 1, -1, -1]),
+      new Float64Array([1, -1, -1, 1, 1, -1, -1, 1]),
+      new Float64Array([1, 1, 1, 1, -1, -1, -1, -1]),
+      new Float64Array([1, -1, 1, -1, -1, 1, -1, 1]),
+      new Float64Array([1, 1, -1, -1, -1, -1, 1, 1]),
+      new Float64Array([1, -1, -1, 1, -1, 1, 1, -1]),
+    ]);
   });
 });
 describe('pbDesign', () => {
