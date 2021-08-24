@@ -47,14 +47,13 @@ export function isPowerOf2(n) {
 }
 
 export function transpose(matrix) {
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = i + 1; j < matrix[i].length; j++) {
-      const memory = matrix[i][j];
-      matrix[i][j] = matrix[j][i];
-      matrix[j][i] = memory;
+  const output = build2dMatrix(matrix[0].length, matrix.length);
+  for (let i = 0; i < output.length; i++) {
+    for (let j = 0; j < output[i].length; j++) {
+      output[i][j] = matrix[j][i];
     }
   }
-  return matrix;
+  return output;
 }
 
 export function concatenate(mat1, mat2) {
@@ -64,12 +63,13 @@ export function concatenate(mat1, mat2) {
     );
   }
   const matrix = build2dMatrix(mat1.length, mat1[0].length + mat2[0].length);
-  for (let j = 0; j < mat1.length; j++) {
-    for (let i = 0; i < mat1[0].length; i++) {
-      matrix[i][j] = mat1[i];
+  for (let i = 0; i < mat1.length; i++) {
+    let j = 0;
+    for (; j < mat1[0].length; j++) {
+      matrix[i][j] = mat1[i][j];
     }
-    for (let i = 0; i < mat2[0].length; i++) {
-      matrix[i][j] = mat2[i];
+    for (let k = 0; k < mat2[0].length; k++) {
+      matrix[i][j + k] = mat2[i][k];
     }
   }
   return matrix;

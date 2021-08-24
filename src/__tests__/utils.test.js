@@ -54,3 +54,32 @@ describe('scale2dMatrix', () => {
     ]);
   });
 });
+
+describe('concatenate', () => {
+  it('should concatenate two matrices', () => {
+    expect(
+      utils.concatenate(
+        [new Float64Array([1, 2, 3]), new Float64Array([7, 8, 9])],
+        [new Float64Array([4, 5, 6]), new Float64Array([10, 11, 12])],
+      ),
+    ).toStrictEqual([
+      new Float64Array([1, 2, 3, 4, 5, 6]),
+      new Float64Array([7, 8, 9, 10, 11, 12]),
+    ]);
+  });
+});
+describe('transpose', () => {
+  it('should transpose a matrix', () => {
+    expect(
+      utils.transpose([
+        [1, 2, 3, 4],
+        [5, 6, 7, 8],
+      ]),
+    ).toStrictEqual([
+      new Float64Array([1, 5]),
+      new Float64Array([2, 6]),
+      new Float64Array([3, 7]),
+      new Float64Array([4, 8]),
+    ]);
+  });
+});
