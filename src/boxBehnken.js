@@ -1,6 +1,6 @@
 import { centerRepeat } from './center';
 import { ff2n } from './factorial';
-import { concatenate, transpose } from './utils';
+import { union } from './union';
 
 export function bbDesign(factors, centers) {
   if (factors < 3) {
@@ -38,7 +38,5 @@ export function bbDesign(factors, centers) {
       centers = factors;
     }
   }
-  return transpose(
-    concatenate(transpose(matrix), transpose(centerRepeat(factors, centers))),
-  );
+  return union(matrix, centerRepeat(factors, centers));
 }
