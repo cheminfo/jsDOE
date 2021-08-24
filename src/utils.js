@@ -45,3 +45,32 @@ export function applyToMatrix(matrix, lambda) {
 export function isPowerOf2(n) {
   return n && !(n & (n - 1));
 }
+
+export function transpose(matrix) {
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = i + 1; j < matrix[i].length; j++) {
+      const memory = matrix[i][j];
+      matrix[i][j] = matrix[j][i];
+      matrix[j][i] = memory;
+    }
+  }
+  return matrix;
+}
+
+export function concatenate(mat1, mat2) {
+  if (mat1.length !== mat2.length) {
+    throw new Error(
+      'concatenate: both matrices should have the same number of rows',
+    );
+  }
+  const matrix = build2dMatrix(mat1.length, mat1[0].length + mat2[0].length);
+  for (let j = 0; j < mat1.length; j++) {
+    for (let i = 0; i < mat1[0].length; i++) {
+      matrix[i][j] = mat1[i];
+    }
+    for (let i = 0; i < mat2[0].length; i++) {
+      matrix[i][j] = mat2[i];
+    }
+  }
+  return matrix;
+}
