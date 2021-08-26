@@ -87,3 +87,8 @@ export function fractionalFactorial(gen) {
   }
   return finalMatrix;
 }
+
+//todo fracfact_by_red
+//todo fracfact_opt
+//todo fracfact_aliasing
+//todo fracfact_vector_indices

@@ -1,27 +1,13 @@
 const utils = require('./utils');
 
-export function buildOffset(matrix) {
-  if (!matrix) return matrix;
-  const lines = matrix.length - 1;
-  const columns = matrix[0].length;
-  for (let i = 1; i <= lines; i++) {
-    const current = matrix[i][0];
-    let index = i;
-    for (let j = 1; j < columns; j++) {
-      matrix[1 + (index++ % lines)][j] = current;
-    }
-  }
-  return matrix;
-}
-
+/**
+ * Builds a hadamard matrix
+ *
+ * @param {number} factors
+ * @return {Array.<Float64Array>} hadamard matrix
+ */
 export function hadamard(factors) {
-  if (
-    !(
-      utils.isPowerOf2(factors) ||
-      utils.isPowerOf2(factors / 12) ||
-      utils.isPowerOf2(factors / 20)
-    )
-  ) {
+  if (!(factors % 4 === 0 || factors === 1)) {
     return [];
   }
   const matrix = utils.build2dMatrix(factors, factors);
@@ -45,6 +31,13 @@ export function hadamard(factors) {
   return matrix;
 }
 
+//todo check if this is really the right function (different than wikipedia)
+/**
+ * Builds a Plackett-Burman design
+ *
+ * @param {number} factors
+ * @return {Array.<Float64Array>} Plackett-Burman design
+ */
 export function pbDesign(factors) {
   let factorsCopy = factors << 1;
   let powerOfTwo = -1;

@@ -12,3 +12,5 @@ export function latinSquare(factors) {
   }
   return latinSquare;
 }
+
+//todo the actual design

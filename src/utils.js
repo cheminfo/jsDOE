@@ -42,10 +42,22 @@ export function applyToMatrix(matrix, lambda) {
   return matrix;
 }
 
+/**
+ * Checks if the given number is a power of two
+ *
+ * @param {number} n
+ * @return {boolean} true if the number is a power of two
+ */
 export function isPowerOf2(n) {
   return n && !(n & (n - 1));
 }
 
+/**
+ * Returns the transpose of a matrix
+ *
+ * @param {Array.<Float64Array>} matrix
+ * @return {Array.<Float64Array>} transposed matrix
+ */
 export function transpose(matrix) {
   const output = build2dMatrix(matrix[0].length, matrix.length);
   for (let i = 0; i < output.length; i++) {
@@ -56,6 +68,13 @@ export function transpose(matrix) {
   return output;
 }
 
+/**
+ * Concatenates two matrices horizontally
+ *
+ * @param {Array.<Float64Array>} mat1
+ * @param {Array.<Float64Array>} mat2
+ * @return {Array.<Float64Array>} concatenated array
+ */
 export function concatenate(mat1, mat2) {
   if (mat1.length !== mat2.length) {
     throw new Error(
@@ -89,4 +108,52 @@ export function equidistantArray(minimum, maximum, numberPoints) {
     equidistantArray[i] = minimum + i * step;
   }
   return equidistantArray;
+}
+
+/**
+ * Finds the greatest absolute value in a given array
+ *
+ * @param {array} array
+ * @return {number} greatest number
+ */
+export function absoluteMax(array) {
+  let max = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (Math.abs(array[i]) > max) {
+      max = Math.abs(array[i]);
+    }
+  }
+  return max;
+}
+
+/**
+ * Calculates the pair-wise euclidean point distances of a matrix
+ *
+ * @param {Array.<Float64Array>} matrix
+ * @return {Float64Array} distances
+ */
+export function pDistance(matrix) {
+  const mLength = matrix.length;
+  const mCols = matrix[0].length;
+  if (mLength < 2) {
+    return new Float64Array();
+  }
+  const distances = new Float64Array((mLength * (mLength - 1)) >> 1);
+  let index = 0;
+  for (let i = 0; i < mLength - 1; i++) {
+    for (let j = i + 1; j < mLength; j++) {
+      let sqDistance = 0;
+      for (let k = 0; k < mCols; k++) {
+        sqDistance += (matrix[j][k] - matrix[i][k]) ** 2;
+      }
+      distances[index] = sqDistance ** 0.5;
+      index++;
+    }
+  }
+  return distances;
+}
+
+//todo do this function
+export function maxCorrelationCoefficient(matrix, transpose = false) {
+  return matrix & transpose;
 }
