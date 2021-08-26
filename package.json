@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "itertools": "^1.7.0",
-    "ml-matrix": "^6.8.0"
+    "ml-matrix": "^6.8.0",
+    "seedrandom": "^3.0.5"
   }
 }

@@ -74,3 +74,19 @@ export function concatenate(mat1, mat2) {
   }
   return matrix;
 }
+
+/**
+ * Generates an array of evenly spaced numbers
+ * @param {number} minimum Lower bound
+ * @param {number} maximum Upper bound
+ * @param {number} numberPoints Number of points
+ * @return {array} Evenly spaced numbers
+ */
+export function equidistantArray(minimum, maximum, numberPoints) {
+  const equidistantArray = new Float64Array(numberPoints);
+  const step = (maximum - minimum) / (numberPoints - 1);
+  for (let i = 0; i < numberPoints; i++) {
+    equidistantArray[i] = minimum + i * step;
+  }
+  return equidistantArray;
+}
