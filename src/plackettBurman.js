@@ -32,6 +32,8 @@ export function hadamard(factors) {
 }
 
 //todo check if this is really the right function (different than wikipedia)
+//For your information, there are files on the internet that contain every known Plackett-Burman designs (for L=2), so maybe using that would be more optimized (files are around 300KB)
+//Though these files match wikipedia but not the python project
 /**
  * Builds a Plackett-Burman design
  *

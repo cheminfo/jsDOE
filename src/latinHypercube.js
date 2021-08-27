@@ -9,6 +9,51 @@ import {
 } from './utils';
 
 /**
+ * Generates a latin hypercube that matches the parameters
+ *
+ * @param {number} factors
+ * @param {object} options **samples**, **criterion**:[*'classic', 'center', 'maximin', 'centermaximin', 'lhsmu'*], **iterations**, **seed**, **correlationMatrix** (for lhsmu only)
+ * @return {Array.<Float64Array>} Latin Hypercube
+ */
+export function latinHypercube(factors, options) {
+  const defaultOptions = {
+    samples: factors,
+    criterion: 'classic',
+    iterations: 5,
+    seed: String.toString(Math.random()),
+    correlationMatrix: undefined,
+  };
+  const option = { ...defaultOptions, ...options };
+  switch (option.criterion) {
+    case 'classic':
+      return classicHypercube(factors, option.samples, option.seed);
+    case 'c':
+    case 'center':
+      return centeredHypercube(factors, option.samples, option.seed);
+    case 'm':
+    case 'maximin':
+    case 'cm':
+    case 'centermaximin':
+      return maximizedHypercube(
+        factors,
+        option.samples,
+        option.iterations,
+        option.criterion,
+        option.seed,
+      );
+    case 'lhsmu':
+      return lhsmu(
+        factors,
+        option.samples,
+        option.correlationMatrix,
+        option.seed,
+      );
+    default:
+      throw new Error(`Invalid criterion ${option.criterion}`);
+  }
+}
+
+/**
  * Generates a seeded randomized matrix
  *
  * @param {number} lines
@@ -142,7 +187,7 @@ export function correlatedCoefficientsHypercube(
   let matrix;
   for (let i = 0; i < iterations; i++) {
     const candidate = classicHypercube(factors, samples, seed);
-    const maxCoef = maxCorrelationCoefficient(candidate, true);
+    const maxCoef = maxCorrelationCoefficient(candidate);
     if (!(maxCoef >= minCorrelation)) {
       minCorrelation = maxCoef;
       matrix = candidate;
@@ -151,4 +196,13 @@ export function correlatedCoefficientsHypercube(
   return matrix;
 }
 
-//todo lhsmu
+export function lhsmu(
+  factors,
+  samples = factors,
+  correlation = undefined,
+  seed = undefined,
+  M = 5,
+) {
+  return { factors, samples, correlation, seed, M };
+  //todo do anything more important before working on this
+}

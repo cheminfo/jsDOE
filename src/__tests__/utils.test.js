@@ -104,3 +104,27 @@ describe('pDistance', () => {
     );
   });
 });
+
+describe('maxCorrelationCoefficient', () => {
+  it('should calculate the max coefficient between columns of a matrix', () => {
+    expect(
+      utils.maxCorrelationCoefficient([
+        new Float64Array([43, 99]),
+        new Float64Array([21, 65]),
+        new Float64Array([25, 79]),
+        new Float64Array([42, 75]),
+        new Float64Array([57, 87]),
+        new Float64Array([59, 81]),
+      ]),
+    ).toBeCloseTo(0.529809);
+    expect(
+      utils.maxCorrelationCoefficient([
+        new Float64Array([15, 25]),
+        new Float64Array([18, 25]),
+        new Float64Array([21, 27]),
+        new Float64Array([24, 31]),
+        new Float64Array([27, 32]),
+      ]),
+    ).toBeCloseTo(0.953463);
+  });
+});

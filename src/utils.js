@@ -153,7 +153,42 @@ export function pDistance(matrix) {
   return distances;
 }
 
-//todo do this function
-export function maxCorrelationCoefficient(matrix, transpose = false) {
-  return matrix & transpose;
+/**
+ * Calculates the max correlation coefficient between a matrix' columns
+ *
+ * @export
+ * @param {Array.<Float64Array>} matrix
+ * @return {number} max absolute correlation coefficient
+ */
+export function maxCorrelationCoefficient(matrix) {
+  let max = 0;
+  const cols = matrix[0].length;
+  const lines = matrix.length;
+  for (let k = 0; k < cols - 1; k++) {
+    for (let j = k + 1; j < cols; j++) {
+      let kSum = 0;
+      let jSum = 0;
+      let jkSum = 0;
+      let jSqrSum = 0;
+      let kSqrSum = 0;
+      for (let i = 0; i < lines; i++) {
+        const jValue = matrix[i][j];
+        const kValue = matrix[i][k];
+        jSum += jValue;
+        kSum += kValue;
+        jkSum += jValue * kValue;
+        jSqrSum += jValue * jValue;
+        kSqrSum += kValue * kValue;
+      }
+      const correlation =
+        (lines * jkSum - kSum * jSum) /
+        Math.sqrt(
+          (lines * kSqrSum - kSum * kSum) * (lines * jSqrSum - jSum * jSum),
+        );
+      if (correlation > max) {
+        max = correlation;
+      }
+    }
+  }
+  return max;
 }
