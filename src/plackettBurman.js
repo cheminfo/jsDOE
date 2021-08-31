@@ -1,4 +1,5 @@
 const utils = require('./utils');
+const fs = require('fs');
 
 /**
  * Builds a hadamard matrix
@@ -31,16 +32,33 @@ export function hadamard(factors) {
   return matrix;
 }
 
-//todo check if this is really the right function (different than wikipedia)
-//For your information, there are files on the internet that contain every known Plackett-Burman designs (for L=2), so maybe using that would be more optimized (files are around 300KB)
-//Though these files match wikipedia but not the python project
 /**
  * Builds a Plackett-Burman design
  *
- * @param {number} factors
- * @return {Array.<Float64Array>} Plackett-Burman design
+ * @param {number} factors must be a multiple of 4
+ * @return {Array.<Array>} Plackett-Burman design
  */
 export function pbDesign(factors) {
+  if (factors % 4 !== 0 || factors > 48) {
+    return trimmedHadamard(factors);
+  }
+  const read = fs.readFileSync(
+    `${__dirname}/generated/plackettBurman/${factors}.json`,
+  );
+  return JSON.parse(read).data;
+}
+
+/**
+ * Plackett-Burman generation using a hadamard matrix
+ *
+ * Used only when factors is not a multiple of 4
+ *
+ * Matches pyDOE2 but not other sources
+ *
+ * @param {number} factors must be a multiple of 4
+ * @return {Array.<Float64Array>}
+ */
+export function trimmedHadamard(factors) {
   let factorsCopy = factors << 1;
   let powerOfTwo = -1;
   for (; factorsCopy !== 0 && powerOfTwo < 35; powerOfTwo++) {
