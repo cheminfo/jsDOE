@@ -1,5 +1,12 @@
 const utils = require('./utils');
 
+/**
+ * Generates a full-factorial design
+ *
+ * @export
+ * @param {number} levels
+ * @return {Array.<Float64Array>} Full-factorial design
+ */
 export function fullFactorial(levels) {
   const factors = levels.length;
   const lines = utils.arrayTotalProduct(levels);
@@ -15,15 +22,29 @@ export function fullFactorial(levels) {
   return matrix;
 }
 
-export function ff2n(n) {
+/**
+ * Generates a 2-level full-factorial design
+ *
+ * @export
+ * @param {number} factors
+ * @return {Array.<Float64Array>}
+ */
+export function ff2n(factors) {
   return utils.applyToMatrix(
-    fullFactorial(utils.build2dMatrix(1, n).fill(2)),
+    fullFactorial(utils.build2dMatrix(1, factors).fill(2)),
     (x) => {
       return 2 * x - 1;
     },
   );
 }
 
+/**
+ * Generates a 2-level fractional factorial design based on the input string
+ * Example: fractionalFactorial('a b c abc acb bac')
+ * @export
+ * @param {string} gen
+ * @return {*}
+ */
 export function fractionalFactorial(gen) {
   const index = {};
   let count = 0;
@@ -87,8 +108,3 @@ export function fractionalFactorial(gen) {
   }
   return finalMatrix;
 }
-
-//todo fracfact_by_red
-//todo fracfact_opt
-//todo fracfact_aliasing
-//todo fracfact_vector_indices

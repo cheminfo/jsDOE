@@ -4,6 +4,14 @@ import { star } from './star';
 import { union } from './union';
 import { applyToMatrix } from './utils';
 
+/**
+ * Generates a central composite design
+ *
+ * @export
+ * @param {number} factors
+ * @param {Object} options **alpha**: *orthogonal'* or *'rotatable'*, **face**: *'circumscribed'* or *'inscribed'* or *'faced'*, **center**: *[a,b]* number of center points in each block
+ * @return {Array.<Float64Array>}
+ */
 export function ccDesign(factors, options) {
   const defaultOptions = {
     center: new Float64Array([4, 4]),

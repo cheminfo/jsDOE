@@ -41,13 +41,6 @@ export function latinHypercube(factors, options) {
         option.criterion,
         option.seed,
       );
-    case 'lhsmu':
-      return lhsmu(
-        factors,
-        option.samples,
-        option.correlationMatrix,
-        option.seed,
-      );
     default:
       throw new Error(`Invalid criterion ${option.criterion}`);
   }
@@ -194,15 +187,4 @@ export function correlatedCoefficientsHypercube(
     }
   }
   return matrix;
-}
-
-export function lhsmu(
-  factors,
-  samples = factors,
-  correlation = undefined,
-  seed = undefined,
-  M = 5,
-) {
-  return { factors, samples, correlation, seed, M };
-  //todo do anything more important before working on this
 }

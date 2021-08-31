@@ -1,5 +1,13 @@
 const utils = require('./utils');
 
+/**
+ * Generates star points of various design matrices
+ *
+ * @export
+ * @param {number} factors
+ * @param {Object} options {**alpha**: *'faced'* (default) or *'orthogonal'* or *'rotatable'*, **centers**:*[1,1]* (default) number of center points in each block}
+ * @return {Object} {star point, scale}
+ */
 export function star(factors, options) {
   const defaultOptions = { alpha: 'faced', center: new Float64Array([1, 1]) };
   const option = { ...defaultOptions, ...options };

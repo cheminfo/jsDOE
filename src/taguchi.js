@@ -1,5 +1,12 @@
 const fs = require('fs');
 
+/**
+ * Returns a Taguchi design
+ *
+ * @export
+ * @param {Array} parameters [rows, levels, factors, levels, factors,  ...]
+ * @return {Array.<Array>} Taguchi design matrix
+ */
 export function taguchi(parameters) {
   let fileName = `L${parameters[0]}`;
   for (let i = 1; i < parameters.length; i++) {

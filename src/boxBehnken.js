@@ -2,6 +2,14 @@ import { centerRepeat } from './center';
 import { ff2n } from './factorial';
 import { union } from './union';
 
+/**
+ * Generates a Box-Behnken design
+ *
+ * @export
+ * @param {number} factors
+ * @param {Array.<number>} centers
+ * @return {Array.<Float64Array>}
+ */
 export function bbDesign(factors, centers) {
   if (factors < 3) {
     throw new Error('bbDesign: factors must be greater than 3');

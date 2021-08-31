@@ -22,7 +22,21 @@
     "type": "git",
     "url": "git+https://github.com/cheminfo/jsDOE.git"
   },
-  "keywords": [],
+  "keywords": [
+    "design of experiments",
+    "doe",
+    "factorial",
+    "taguchi",
+    "plackett",
+    "burman",
+    "hypercube",
+    "latin hypercube",
+    "central",
+    "composite",
+    "box",
+    "behnken",
+    "cheminfo"
+  ],
   "author": "Benjamin",
   "license": "MIT",
   "bugs": {

@@ -1,5 +1,6 @@
-const utils = require('./utils');
 const fs = require('fs');
+
+const utils = require('./utils');
 
 /**
  * Builds a hadamard matrix
@@ -35,7 +36,7 @@ export function hadamard(factors) {
 /**
  * Builds a Plackett-Burman design
  *
- * @param {number} factors must be a multiple of 4
+ * @param {number} factors multiple of 4 and lower than or equal to 48 for pregenerated else alternate design
  * @return {Array.<Array>} Plackett-Burman design
  */
 export function pbDesign(factors) {
