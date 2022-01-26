@@ -7,6 +7,8 @@
 
 Design of experiments for JavaScript.
 
+get inspired by https://pubs.acs.org/doi/10.1021/acs.analchem.7b00506
+
 ## Installation
 
 `$ npm i jsDOE`
