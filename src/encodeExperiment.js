@@ -24,7 +24,6 @@ export function encodeExperiment(array) {
     } else if ('values' in array[i]) {
       let label = array[i]['label'];
       let values = array[i]['values'];
-      // presumably values is an array
       returnRow = [];
       for (let i = 0; i < values.length; i++) {
         returnRow.push(i);
