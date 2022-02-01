@@ -1,19 +1,19 @@
 import { createXArray } from 'ml-spectra-processing';
 
 export function encodeExperiment(array) {
-  let returnArray = [];
+  let experiments = [];
   let dict = {};
   let rowNumber = 0;
 
   for (let i = 0; i < array.length; i++) {
     let returnRow;
 
-    if ('min' in array[i]) {
-      let label = array[i]['label'];
-      let min = array[i]['min'];
-      let max = array[i]['max'];
-      let nbSamples = array[i]['nbSamples'];
-      let sampling = array[i]['sampling'];
+    if (array[i].min !== undefined) {
+      let label = array[i].label;
+      let min = array[i].min;
+      let max = array[i].max;
+      let nbSamples = array[i].nbSamples;
+      let sampling = array[i].sampling;
 
       returnRow = Array.from(
         createXArray({
@@ -25,16 +25,16 @@ export function encodeExperiment(array) {
       );
 
       dict[rowNumber] = { label: label, values: returnRow };
-      returnArray.push(returnRow);
-    } else if ('values' in array[i]) {
-      let label = array[i]['label'];
-      let values = array[i]['values'];
+      experiments.push(returnRow);
+    } else if (array[i].values !== undefined) {
+      let label = array[i].label;
+      let values = array[i].values;
       returnRow = [];
       for (let i = 0; i < values.length; i++) {
         returnRow.push(i);
       }
       dict[rowNumber] = { label: label, values: values };
-      returnArray.push(returnRow);
+      experiments.push(returnRow);
     }
     rowNumber++;
   }
@@ -54,5 +54,5 @@ export function encodeExperiment(array) {
     return returnArrayOfExperiments;
   }
 
-  return { returnArray, decodeExperiment };
+  return { experiments, decodeExperiment };
 }

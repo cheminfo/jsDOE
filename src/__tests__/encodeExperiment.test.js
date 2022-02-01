@@ -14,7 +14,7 @@ let array = [
 describe('test encodeExperiment function', () => {
   it('verifying matrix returned is correct', () => {
     let result = encodeExperiment(array);
-    expect(result.returnArray).toBeDeepCloseTo([
+    expect(result.experiments).toBeDeepCloseTo([
       [0, 25, 50, 75, 100],
       [0.1, 0.3162, 1],
       [0, 1, 2, 3],
