@@ -1,5 +1,9 @@
 import { encodeExperiment } from '../encodeExperiment';
 
+import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
+
+expect.extend({ toBeDeepCloseTo });
+
 let array = [
   { label: 'temperature', min: 0, max: 100, nbSamples: 5, sampling: 'uniform' },
   { label: 'solvant', min: 0.1, max: 1, nbSamples: 3, sampling: 'log' },
@@ -10,9 +14,9 @@ let array = [
 describe('test encodeExperiment function', () => {
   it('verifying matrix returned is correct', () => {
     let result = encodeExperiment(array);
-    expect(result.returnArray).toStrictEqual([
+    expect(result.returnArray).toBeDeepCloseTo([
       [0, 25, 50, 75, 100],
-      [1.2589254117941673, 3.548133892335755, 10],
+      [0.1, 0.3162, 1],
       [0, 1, 2, 3],
       [0, 1, 2],
     ]);
@@ -25,9 +29,9 @@ describe('test encodeExperiment function', () => {
       [0, 2, 1, 2],
       [1, 2, 2, 2],
     ]);
-    expect(experiments).toStrictEqual([
-      { temperature: 0, solvant: 10, 'product 1': 'B', 'product 2': 'G' },
-      { temperature: 25, solvant: 10, 'product 1': 'C', 'product 2': 'G' },
+    expect(experiments).toBeDeepCloseTo([
+      { temperature: 0, solvant: 1, 'product 1': 'B', 'product 2': 'G' },
+      { temperature: 25, solvant: 1, 'product 1': 'C', 'product 2': 'G' },
     ]);
   });
 });

@@ -52,12 +52,14 @@
     "eslint": "^7.32.0",
     "eslint-config-cheminfo": "^5.2.4",
     "jest": "^27.0.6",
+    "jest-matcher-deep-close-to": "^3.0.2",
     "prettier": "^2.3.2",
     "rollup": "^2.55.1"
   },
   "dependencies": {
     "itertools": "^1.7.0",
     "ml-matrix": "^6.8.0",
+    "ml-spectra-processing": "^9.0.0",
     "seedrandom": "^3.0.5"
   }
 }
