@@ -1,6 +1,6 @@
 {
   "name": "jsDOE",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Design of experiments for JavaScript",
   "main": "lib/index.js",
   "module": "src/index.js",
