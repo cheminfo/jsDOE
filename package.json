@@ -59,6 +59,6 @@
   "dependencies": {
     "itertools": "^1.7.0",
     "ml-matrix": "^6.8.0",
-    "ml-spectra-processing": "^9.0.0",
-  },
+    "ml-spectra-processing": "^9.0.0"
+  }
 }
