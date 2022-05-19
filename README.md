@@ -7,7 +7,6 @@
 
 Design of experiments for JavaScript.
 
-get inspired by https://pubs.acs.org/doi/10.1021/acs.analchem.7b00506
 
 ## Installation
 
@@ -16,10 +15,13 @@ get inspired by https://pubs.acs.org/doi/10.1021/acs.analchem.7b00506
 ## Usage
 
 ```js
-import library from 'jsDOE';
+import {classicHypercube, fullFactorial} from 'js-doe'
 
-const result = library(args);
-// result is ...
+classicHypercube(3, 4, '42');
+// result is an array of design points 
+
+fullFactorial([2,4,3])
+// the result is an array of design point
 ```
 
 ## [API Documentation](https://cheminfo.github.io/jsDOE/)

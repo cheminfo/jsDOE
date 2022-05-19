@@ -47,17 +47,17 @@
     "testEnvironment": "node"
   },
   "devDependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.14.5",
-    "@types/jest": "^26.0.24",
-    "eslint": "^7.32.0",
-    "eslint-config-cheminfo": "^5.2.4",
-    "jest": "^27.0.6",
-    "prettier": "^2.3.2",
-    "rollup": "^2.55.1"
+    "@babel/plugin-transform-modules-commonjs": "^7.17.12",
+    "@types/jest": "^27.5.1",
+    "eslint": "^8.15.0",
+    "eslint-config-cheminfo": "^7.3.0",
+    "jest": "^28.1.0",
+    "prettier": "^2.6.2",
+    "rollup": "^2.74.0"
   },
   "dependencies": {
-    "itertools": "^1.7.0",
-    "ml-matrix": "^6.8.0",
+    "itertools": "^1.7.1",
+    "ml-matrix": "^6.10.0",
     "seedrandom": "^3.0.5"
   }
 }
