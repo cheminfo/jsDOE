@@ -37,7 +37,7 @@
     "behnken",
     "cheminfo"
   ],
-  "author": "Benjamin",
+  "author": "Benjamin Yu, Luc Patiny, Aiday Marlen Kyzy, Kevin Jablonka",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cheminfo/jsDOE/issues"
