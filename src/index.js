@@ -8,3 +8,4 @@ export * from './plackettBurman';
 export * from './star';
 export * from './taguchi';
 export * from './union';
+export * from './encodeExperiment';
