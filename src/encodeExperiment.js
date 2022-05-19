@@ -1,4 +1,4 @@
-import { createXArray } from 'ml-spectra-processing';
+import { createFromToArray } from 'ml-spectra-processing';
 
 export function encodeExperiment(array) {
   let experiments = [];
@@ -16,7 +16,7 @@ export function encodeExperiment(array) {
       let sampling = array[i].sampling;
 
       returnRow = Array.from(
-        createXArray({
+        createFromToArray({
           from: min,
           to: max,
           length: nbSamples,
@@ -45,8 +45,8 @@ export function encodeExperiment(array) {
       let index = 0;
       let experiment = {};
       for (let j = 0; j < arrayOfExperiments[i].length; j++) {
-        experiment[dict[index]['label']] =
-          dict[index]['values'][arrayOfExperiments[i][j]];
+        experiment[dict[index].label] =
+          dict[index].values[arrayOfExperiments[i][j]];
         index++;
       }
       returnArrayOfExperiments.push(experiment);

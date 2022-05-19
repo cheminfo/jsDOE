@@ -1,4 +1,4 @@
-const utils = require('./utils');
+import { build2dMatrix, applyToMatrix, arrayTotalProduct } from './utils';
 
 /**
  * Generates a full-factorial design
@@ -9,8 +9,8 @@ const utils = require('./utils');
  */
 export function fullFactorial(levels) {
   const factors = levels.length;
-  const lines = utils.arrayTotalProduct(levels);
-  const matrix = utils.build2dMatrix(lines, factors);
+  const lines = arrayTotalProduct(levels);
+  const matrix = build2dMatrix(lines, factors);
   for (let i = 0; i < lines; i++) {
     let last = 1;
     for (let j = 0; j < factors; j++) {
@@ -30,8 +30,8 @@ export function fullFactorial(levels) {
  * @return {Array.<Float64Array>}
  */
 export function ff2n(factors) {
-  return utils.applyToMatrix(
-    fullFactorial(utils.build2dMatrix(1, factors).fill(2)),
+  return applyToMatrix(
+    fullFactorial(build2dMatrix(1, factors).fill(2)),
     (x) => {
       return 2 * x - 1;
     },
@@ -73,12 +73,9 @@ export function fractionalFactorial(gen) {
   }
   const singleMatrix = ff2n(singleCount);
   const lines = singleMatrix.length;
-  const finalMatrix = utils.applyToMatrix(
-    utils.build2dMatrix(lines, count),
-    () => {
-      return 1;
-    },
-  );
+  const finalMatrix = applyToMatrix(build2dMatrix(lines, count), () => {
+    return 1;
+  });
   //final matrix filling - single values
   for (let i = 0; i < singleCount; i++) {
     const currentIndex = index[single[i]];

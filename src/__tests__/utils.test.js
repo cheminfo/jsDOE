@@ -1,33 +1,37 @@
-const utils = require('../utils');
+import {
+  arrayTotalProduct,
+  build2dMatrix,
+  applyToMatrix,
+  concatenate,
+  transpose,
+  maxCorrelationCoefficient,
+  pDistance,
+} from '../utils';
 
 describe('arrayTotalProduct', () => {
   it('should return the product of each element in an array', () => {
-    expect(utils.arrayTotalProduct([1, 2, 3, 4, 5, 6, 7, 8, 9])).toStrictEqual(
-      362880,
-    );
-    expect(utils.arrayTotalProduct([])).toStrictEqual(0);
-    expect(utils.arrayTotalProduct([64])).toStrictEqual(64);
+    expect(arrayTotalProduct([1, 2, 3, 4, 5, 6, 7, 8, 9])).toBe(362880);
+    expect(arrayTotalProduct([])).toBe(0);
+    expect(arrayTotalProduct([64])).toBe(64);
   });
 });
 describe('build2dMatrix', () => {
   it('should build a 2D matrix', () => {
-    expect(utils.build2dMatrix(2, 3)).toStrictEqual([
+    expect(build2dMatrix(2, 3)).toStrictEqual([
       new Float64Array(3),
       new Float64Array(3),
     ]);
-    expect(utils.build2dMatrix(2, [3, 2])).toStrictEqual([
+    expect(build2dMatrix(2, [3, 2])).toStrictEqual([
       new Float64Array([3, 2]),
       new Float64Array([3, 2]),
     ]);
-    expect(utils.build2dMatrix(1, [3, 2])).toStrictEqual(
-      new Float64Array([3, 2]),
-    );
+    expect(build2dMatrix(1, [3, 2])).toStrictEqual(new Float64Array([3, 2]));
   });
 });
 describe('scale2dMatrix', () => {
   it('should multiply each element of a 2D matrix by a scalar', () => {
     expect(
-      utils.applyToMatrix(
+      applyToMatrix(
         [
           [0.0, 0.0, 0.0],
           [1.0, 0.0, 0.0],
@@ -58,7 +62,7 @@ describe('scale2dMatrix', () => {
 describe('concatenate', () => {
   it('should concatenate two matrices', () => {
     expect(
-      utils.concatenate(
+      concatenate(
         [new Float64Array([1, 2, 3]), new Float64Array([7, 8, 9])],
         [new Float64Array([4, 5, 6]), new Float64Array([10, 11, 12])],
       ),
@@ -71,7 +75,7 @@ describe('concatenate', () => {
 describe('transpose', () => {
   it('should transpose a matrix', () => {
     expect(
-      utils.transpose([
+      transpose([
         [1, 2, 3, 4],
         [5, 6, 7, 8],
       ]),
@@ -87,7 +91,7 @@ describe('transpose', () => {
 describe('pDistance', () => {
   it('should calculate the distances array of a matrix', () => {
     expect(
-      utils.pDistance([
+      pDistance([
         [0.1629447, 0.8616334],
         [0.5811584, 0.3826752],
         [0.2270954, 0.4442068],
@@ -108,7 +112,7 @@ describe('pDistance', () => {
 describe('maxCorrelationCoefficient', () => {
   it('should calculate the max coefficient between columns of a matrix', () => {
     expect(
-      utils.maxCorrelationCoefficient([
+      maxCorrelationCoefficient([
         new Float64Array([43, 99]),
         new Float64Array([21, 65]),
         new Float64Array([25, 79]),
@@ -118,7 +122,7 @@ describe('maxCorrelationCoefficient', () => {
       ]),
     ).toBeCloseTo(0.529809);
     expect(
-      utils.maxCorrelationCoefficient([
+      maxCorrelationCoefficient([
         new Float64Array([15, 25]),
         new Float64Array([18, 25]),
         new Float64Array([21, 27]),

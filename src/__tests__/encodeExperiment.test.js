@@ -1,6 +1,7 @@
+import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
+
 import { encodeExperiment } from '../encodeExperiment';
 
-import { toBeDeepCloseTo } from 'jest-matcher-deep-close-to';
 
 expect.extend({ toBeDeepCloseTo });
 

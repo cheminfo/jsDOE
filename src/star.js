@@ -1,5 +1,4 @@
-const utils = require('./utils');
-
+import { build2dMatrix } from './utils';
 /**
  * Generates star points of various design matrices
  *
@@ -30,7 +29,7 @@ export function star(factors, options) {
     default:
       throw new Error(`Invalid value for 'alpha': ${option.alpha}`);
   }
-  const matrix = utils.build2dMatrix(axialPoints, factors);
+  const matrix = build2dMatrix(axialPoints, factors);
   for (let i = 0; i < factors; i++) {
     matrix[2 * i][i] = -scale;
     matrix[2 * i + 1][i] = scale;

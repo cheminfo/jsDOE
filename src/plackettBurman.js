@@ -1,6 +1,6 @@
-const fs = require('fs');
+import { readFileSync } from 'fs';
 
-const utils = require('./utils');
+import { build2dMatrix } from './utils';
 
 /**
  * Builds a hadamard matrix
@@ -12,7 +12,7 @@ export function hadamard(factors) {
   if (!(factors % 4 === 0 || factors === 1)) {
     return [];
   }
-  const matrix = utils.build2dMatrix(factors, factors);
+  const matrix = build2dMatrix(factors, factors);
   matrix[0][0] = 1;
   for (let n = 2; n <= factors; n <<= 1) {
     const limit = n / 2;
@@ -43,7 +43,7 @@ export function pbDesign(factors) {
   if (factors % 4 !== 0 || factors > 48) {
     return trimmedHadamard(factors);
   }
-  const read = fs.readFileSync(
+  const read = readFileSync(
     `${__dirname}/generated/plackettBurman/${factors}.json`,
   );
   return JSON.parse(read).data;
@@ -67,7 +67,7 @@ export function trimmedHadamard(factors) {
   }
   const lines = 1 << powerOfTwo;
   const hdMatrix = hadamard(lines);
-  const matrix = utils.build2dMatrix(lines, factors);
+  const matrix = build2dMatrix(lines, factors);
   for (let i = 0; i < lines; i++) {
     for (let j = 0; j < factors; j++) {
       matrix[i][j] = hdMatrix[lines - i - 1][j + 1];

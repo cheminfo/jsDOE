@@ -1,4 +1,4 @@
-const fs = require('fs');
+import { readFileSync } from 'fs';
 
 /**
  * Returns a Taguchi design
@@ -12,8 +12,6 @@ export function taguchi(parameters) {
   for (let i = 1; i < parameters.length; i++) {
     fileName += `_${parameters[i]}`;
   }
-  const read = fs.readFileSync(
-    `${__dirname}/generated/taguchi/${fileName}.json`,
-  );
+  const read = readFileSync(`${__dirname}/generated/taguchi/${fileName}.json`);
   return JSON.parse(read).data;
 }
